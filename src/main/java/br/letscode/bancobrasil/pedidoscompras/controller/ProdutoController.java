@@ -5,6 +5,7 @@ import br.letscode.bancobrasil.pedidoscompras.service.ProdutoService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -18,7 +19,7 @@ public class ProdutoController {
     }
 
     @PostMapping
-    public ResponseEntity<Produto> salvar(Produto produto) {
+    public ResponseEntity<Produto> salvar(@RequestBody @Valid Produto produto) {
         return ResponseEntity.ok(produtoService.salvar(produto));
     }
 
@@ -28,8 +29,8 @@ public class ProdutoController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Produto>> listar() {
-        return ResponseEntity.ok(produtoService.listar());
+    public ResponseEntity<List<Produto>> listar(String nome) {
+        return ResponseEntity.ok(produtoService.listar(nome));
     }
 
     @GetMapping("/{id}")

@@ -33,8 +33,8 @@ public class ProdutoServiceImpl implements ProdutoService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<Produto> listar() {
-        return produtoRepository.findAll();
+    public List<Produto> listar(String nome) {
+        return produtoRepository.findByNomeContaining(nome);
     }
 
     @Override

@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -32,7 +33,7 @@ public class RestControllerExceptionAdvice {
 
     @ExceptionHandler({ValidacaoException.class, EmptyResultDataAccessException.class})
     public ResponseEntity<ErrorMessage> handleValidationException(RuntimeException ex) {
-        return ResponseEntity.badRequest().body(new ErrorMessage("Validation", ex.getMessage()));
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorMessage("Validation", ex.getMessage()));
     }
 
     @Getter
