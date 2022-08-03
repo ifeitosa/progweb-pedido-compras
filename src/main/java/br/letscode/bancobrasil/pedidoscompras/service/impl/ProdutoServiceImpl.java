@@ -1,5 +1,6 @@
 package br.letscode.bancobrasil.pedidoscompras.service.impl;
 
+import br.letscode.bancobrasil.pedidoscompras.exceptions.ValidacaoException;
 import br.letscode.bancobrasil.pedidoscompras.model.Produto;
 import br.letscode.bancobrasil.pedidoscompras.repository.ProdutoRepository;
 import br.letscode.bancobrasil.pedidoscompras.service.ProdutoService;
@@ -40,7 +41,7 @@ public class ProdutoServiceImpl implements ProdutoService {
     @Transactional(readOnly = true)
     public Produto getId(Long id) {
         return produtoRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("ID nao encontrado"));
+                .orElseThrow(() -> new ValidacaoException("ID nao encontrado"));
     }
 
 }

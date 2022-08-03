@@ -1,9 +1,11 @@
 package br.letscode.bancobrasil.pedidoscompras.config;
 
+import br.letscode.bancobrasil.pedidoscompras.exceptions.ValidacaoException;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -26,6 +28,11 @@ public class RestControllerExceptionAdvice {
                 })
                 .collect(Collectors.toList());
         return ResponseEntity.badRequest().body(errorList);
+    }
+
+    @ExceptionHandler({ValidacaoException.class, EmptyResultDataAccessException.class})
+    public ResponseEntity<ErrorMessage> handleValidationException(RuntimeException ex) {
+        return ResponseEntity.badRequest().body(new ErrorMessage("Validation", ex.getMessage()));
     }
 
     @Getter
