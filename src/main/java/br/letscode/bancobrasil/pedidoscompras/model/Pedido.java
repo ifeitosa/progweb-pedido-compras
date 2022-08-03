@@ -24,7 +24,7 @@ public class Pedido {
 
     private StatusPedidoEnum status;
 
-    @OneToMany
+    @OneToMany(mappedBy = "pedido")
     private Set<ItemPedido> itens;
 
 }
