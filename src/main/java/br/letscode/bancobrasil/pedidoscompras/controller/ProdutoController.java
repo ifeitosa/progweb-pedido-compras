@@ -2,6 +2,8 @@ package br.letscode.bancobrasil.pedidoscompras.controller;
 
 import br.letscode.bancobrasil.pedidoscompras.model.Produto;
 import br.letscode.bancobrasil.pedidoscompras.service.ProdutoService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,8 +31,8 @@ public class ProdutoController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Produto>> listar(String nome) {
-        return ResponseEntity.ok(produtoService.listar(nome));
+    public ResponseEntity<Page<Produto>> listar(String filtro, Pageable pageable) {
+        return ResponseEntity.ok(produtoService.listar(filtro, pageable));
     }
 
     @GetMapping("/{id}")

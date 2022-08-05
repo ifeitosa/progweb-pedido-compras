@@ -27,7 +27,7 @@ public class ClienteController {
 
     @Operation(description = "Salvar um cliente")
     @PostMapping
-    public ResponseEntity<Cliente> save(@RequestBody @Valid Cliente cliente) {
+    public ResponseEntity<Cliente> salvar(@RequestBody @Valid Cliente cliente) {
         return ResponseEntity.ok(clienteService.salvar(cliente));
     }
 

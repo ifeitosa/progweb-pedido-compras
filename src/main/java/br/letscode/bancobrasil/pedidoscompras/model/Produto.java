@@ -1,8 +1,6 @@
 package br.letscode.bancobrasil.pedidoscompras.model;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -12,6 +10,8 @@ import java.math.BigDecimal;
 @Setter
 @EqualsAndHashCode
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Produto {
 
     @Id
